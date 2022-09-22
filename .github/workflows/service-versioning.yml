@@ -2,9 +2,7 @@
 name: Automatic service versioning and Jira update
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
 
 jobs:
   bump-service-version:
