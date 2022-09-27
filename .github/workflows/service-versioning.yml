@@ -3,6 +3,13 @@ name: Automatic service versioning and Jira update
 
 on:
   workflow_call:
+    secrets:
+      JiraEmail:
+        required: true
+      JiraUrl:
+        required: true
+      JiraApiToken:
+        required: true
 
 jobs:
   bump-service-version:
@@ -48,9 +55,9 @@ jobs:
       - name: Jira login
         uses: PhraseePhoundry/ga-jira-login@main
         env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_BASE_URL: ${{ secrets.JiraUrl }}
+          JIRA_USER_EMAIL: ${{ secrets.JiraEmail }}
+          JIRA_API_TOKEN: ${{ secrets.JiraApiToken }}
 
       - name: Find issue key
         id: find-issue-key
