@@ -1,0 +1,14 @@
+name: Automatic service versioning and Jira update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-service-version-bump-workflow:
+    uses: PhraseePhoundry/ga-workflows/.github/workflows/service-versioning.yml@main
+    secrets:
+      JiraUrl: ${{ secrets.JIRA_BASE_URL }}
+      JiraApiToken: ${{ secrets.JIRA_API_TOKEN }}
+      JiraEmail: ${{ secrets.JIRA_USER_EMAIL }}
