@@ -7,7 +7,7 @@ on:
 
 jobs:
   call-service-version-bump-workflow:
-    uses: PhraseePhoundry/ga-workflows/.github/workflows/service-versioning.yml@main
+    uses: PhraseePhoundry/ga-workflows/.github/workflows/service-versioning.yml@develop
     secrets:
       JiraUrl: ${{ secrets.JIRA_BASE_URL }}
       JiraApiToken: ${{ secrets.JIRA_API_TOKEN }}

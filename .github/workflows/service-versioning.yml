@@ -24,17 +24,11 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: cat package.json
-        run: cat ./package.json
-
       - name: Bump version
         id: version-bump
         uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: cat package.json
-        run: cat ./package.json
 
       - name: Output Step
         env:
