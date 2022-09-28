@@ -47,7 +47,7 @@ git commit -m "[AB-123] - This is a commit containing a breaking change"
 2.4.12 ==> 3.4.12
 ```
 
-If a commit uses the words/phrases "MINOR VERSION INCREMENT", "new feature", "minor", the _minor_ version will be incremented.
+If a commit uses the words/phrases "MINOR VERSION INCREMENT", "new feature", or "minor", the _minor_ version will be incremented.
 ```
 git commit -m "[AB-123] - This is a commit containing a new feature"
 3.4.12 ==> 3.5.12
