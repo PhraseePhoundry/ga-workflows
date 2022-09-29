@@ -26,7 +26,7 @@ jobs:
       
       - name: Get latest git tag
         id: get-latest-tag
-        uses: wyrihaximus/github-action-get-previous-tag@latest
+        uses: wyrihaximus/github-action-get-previous-tag@master
 
       - name: Bump version
         id: version-bump
