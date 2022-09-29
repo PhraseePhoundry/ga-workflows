@@ -63,7 +63,7 @@ jobs:
 
       - name: Find issue key
         id: find-issue-key
-        uses: PhraseePhoundry/ga-jira-find-issue-key@main
+        uses: PhraseePhoundry/ga-jira-find-issue-key@develop
         with:
           from: commits
       
