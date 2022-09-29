@@ -29,15 +29,14 @@ jobs:
       
       - name: Get latest git tag
         id: get-latest-tag
-        uses: wyrihaximus/github-action-get-previous-tag@master
+        uses: PhraseePhoundry/ga-get-current-tag@main
 
       - name: Bump version
         id: version-bump
         uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@develop
-        with:
-          issue: ${{ steps.get-latest-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_TAG: ${{ steps.get-latest-tag.outputs.tag }}
 
       - name: Output Step
         env:
