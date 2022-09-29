@@ -1,6 +1,6 @@
 {
   "name": "ga-workflows",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This is a repository containing shared/common GitHub Actions workflows for the Phrasee Phoundry organisation.",
   "main": "index.js",
   "directories": {
