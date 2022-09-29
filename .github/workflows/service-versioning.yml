@@ -24,17 +24,19 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: cat package.json
-        run: cat ./package.json
+      - name: Run git fetch
+        run: git fetch --prune --unshallow
+      
+      - name: Get latest git tag
+        id: get-latest-tag
+        uses: PhraseePhoundry/ga-get-current-tag@main
 
       - name: Bump version
         id: version-bump
         uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: cat package.json
-        run: cat ./package.json
+          CURRENT_TAG: ${{ steps.get-latest-tag.outputs.tag }}
 
       - name: Output Step
         env:
