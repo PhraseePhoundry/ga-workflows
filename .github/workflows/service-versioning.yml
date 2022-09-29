@@ -23,18 +23,18 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-
-      - name: cat package.json
-        run: cat ./package.json
+      
+      - name: Get latest git tag
+        id: get-latest-tag
+        uses: wyrihaximus/github-action-get-previous-tag@latest
 
       - name: Bump version
         id: version-bump
-        uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@main
+        uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@develop
+        with:
+          issue: ${{ steps.get-latest-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: cat package.json
-        run: cat ./package.json
 
       - name: Output Step
         env:
