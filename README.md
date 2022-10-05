@@ -10,7 +10,7 @@ Reusable workflows are located in the `.github/workflows` directory. Example usa
 
 ## service-versioning.yml
 
-This workflow is responsible for automatic service versioning. It is triggered on a commit to `develop`, either through a direct push to the branch, or through a merged PR. It increments a service version number, updates the service's `package.json` file and pushes a new commit, then updates the `Service version` field in the corresponding Jira ticket.
+This workflow is responsible for automatic service versioning. It is triggered on a commit to `develop`, either through a direct push to the branch, or through a merged PR. It increments a service version number, pushes the new version number to GitHub as a tag, then updates the `Service version` field in the corresponding Jira ticket.
 
 ### Usage
 
