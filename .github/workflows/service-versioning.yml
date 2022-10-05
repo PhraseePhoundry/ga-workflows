@@ -33,7 +33,7 @@ jobs:
 
       - name: Bump version
         id: version-bump
-        uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@main
+        uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@remove-package-json-dependency
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CURRENT_TAG: ${{ steps.get-latest-tag.outputs.tag }}
