@@ -3,11 +3,11 @@ name: Automatic service versioning and Jira update
 on:
   push:
     branches:
-      - remove-package-json-dependency
+      - develop
 
 jobs:
   call-service-version-bump-workflow:
-    uses: PhraseePhoundry/ga-workflows/.github/workflows/service-versioning.yml@remove-package-json-dependency
+    uses: PhraseePhoundry/ga-workflows/.github/workflows/service-versioning.yml@develop
     secrets:
       JiraUrl: ${{ secrets.JIRA_BASE_URL }}
       JiraApiToken: ${{ secrets.JIRA_API_TOKEN }}
