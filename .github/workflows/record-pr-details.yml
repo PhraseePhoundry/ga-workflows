@@ -1,0 +1,19 @@
+name: Record PR details
+
+on:
+  workflow_call:
+
+jobs:
+  record-pr-details:
+    name: Record PR details
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Record PR details
+        id: pr-details
+        uses: PhraseePhoundry/ga-record-pr-details@main
