@@ -76,6 +76,7 @@ jobs:
           newTag: ${{ needs.bump-service-version.outputs.newTag }}
 
   record-pr-details:
+    name: Record PR details
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     needs: bump-service-version
