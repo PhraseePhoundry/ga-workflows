@@ -82,6 +82,9 @@ jobs:
     needs: bump-service-version
 
     steps:
+      - name: log PR event
+        run: echo "${{ github.event }}"
+
       - name: Checkout source code
         uses: actions/checkout@v2
         with:
