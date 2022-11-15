@@ -76,15 +76,17 @@ jobs:
           newTag: ${{ needs.bump-service-version.outputs.newTag }}
 
   record-pr-details:
-    name: Record PR details
-    runs-on: ubuntu-latest
+    if: github.event.pull_request && github.event.pull_request.merged == true
+      name: Record PR details
+      runs-on: ubuntu-latest
+      needs: bump-service-version
 
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
+      steps:
+        - name: Checkout source code
+          uses: actions/checkout@v2
+          with:
+            ref: ${{ github.ref }}
 
-      - name: Record PR details
-        id: pr-details
-        uses: PhraseePhoundry/ga-record-pr-details/record-pr-details@main
+        - name: Record PR details
+          id: pr-details
+          uses: PhraseePhoundry/ga-record-pr-details/record-pr-details@main
