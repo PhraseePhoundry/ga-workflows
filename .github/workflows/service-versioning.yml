@@ -74,3 +74,17 @@ jobs:
         with:
           issue: ${{ steps.find-issue-key.outputs.issue }}
           newTag: ${{ needs.bump-service-version.outputs.newTag }}
+
+  record-pr-details:
+    name: Record PR details
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Record PR details
+        id: pr-details
+        uses: PhraseePhoundry/ga-record-pr-details/record-pr-details@main
