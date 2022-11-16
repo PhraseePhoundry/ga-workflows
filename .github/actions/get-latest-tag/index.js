@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 
-exec('git tag -l | grep "v[0-9]+.[0-9]+.[0-9]+$" | sort -V | tail -1', (err, tag, stderr) => {
+exec('git tag -l | grep "v[0-9]*.[0-9]*.[0-9]*$" | sort -V | tail -1', (err, tag, stderr) => {
     if (err) {
         console.log('\x1b[33m%s\x1b[0m', 'Could not find any tags because: ');
         console.log('\x1b[31m%s\x1b[0m', stderr);
