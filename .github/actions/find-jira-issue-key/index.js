@@ -5,7 +5,7 @@ const issueIdRegEx = /([a-zA-Z0-9]+-[0-9]+)/g
 async function main() {
     console.log('Finding Jira issue key')
     
-    const commits = core.getInput('commits');
+    const commits = JSON.parse(core.getInput('commits'));
     const commitsStr = commits.map(commit => commit.message).join(" ").replace('\n', '');
 
     const issueKey = findIssueKey(commitsStr)
