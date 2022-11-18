@@ -8,22 +8,27 @@ async function main() {
     const commits = JSON.parse(core.getInput('commits'));
     const commitsStr = commits.join(" ").replace('\n', '');
 
-    const issueKey = findIssueKey(commitsStr)
-    core.setOutput('issue', issueKey)
+    const issueKeys = findIssueKey(commitsStr)
+
+    if(issueKeys) {
+        const uniqueKeys = Array.from(new Set(issueKeys))
+        console.log(`Detected issue key(s): ${uniqueKeys}`)
+    }
+    core.setOutput('issue', JSON.stringify(uniqueKeys))
 }
 
 const findIssueKey = (searchStr) => {
-    const match = searchStr.match(issueIdRegEx)
+    const matches = searchStr.match(issueIdRegEx)
 
     console.log(`Searching in string: \n ${searchStr}`)
 
-    if (!match) {
+    if (!matches) {
       console.log('No issue keys found')
 
       return
     }
 
-    return match[0]
+    return matches
   }
 
 
