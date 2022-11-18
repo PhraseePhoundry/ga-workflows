@@ -3,9 +3,7 @@ const core = require('@actions/core')
 
 async function main() {
 
-    console.log('--------------------------------------------------')
     const event = process.env.GITHUB_EVENT_PATH ? require(process.env.GITHUB_EVENT_PATH) : {};
-    console.log(JSON.stringify(event))
     let messages
 
     if (event.pull_request) {
@@ -18,6 +16,8 @@ async function main() {
                 pull_number: event.pull_request.number,
             })
             const commits = commitsListed.data
+            console.log('--------------------------------------------------')
+            console.log(commits)
             messages = commits ? commits.map((commit) => commit.commit.message) : [];
 
         } catch (err) {
