@@ -30,7 +30,7 @@ jobs:
       
       - name: Get latest git tag
         id: get-latest-tag
-        uses: PhraseePhoundry/ga-get-current-tag@main
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@HS-1253-record-pr-details
         with:
           fallback: '1.0.0'
       
