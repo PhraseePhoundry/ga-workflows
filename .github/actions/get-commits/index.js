@@ -16,8 +16,6 @@ async function main() {
                 pull_number: event.pull_request.number,
             })
             const commits = commitsListed.data
-            console.log('--------------------------------------------------')
-            console.log(commits)
             messages = commits ? commits.map((commit) => commit.commit.message) : [];
 
         } catch (err) {
@@ -34,8 +32,6 @@ async function main() {
         process.exit(1);
     }
 
-    console.log('************************************')
-    console.log(messages)
     core.setOutput('commits', messages)
     return
 }
