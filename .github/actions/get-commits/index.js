@@ -34,6 +34,8 @@ async function main() {
         process.exit(1);
     }
 
+    console.log('************************************')
+    console.log(messages)
     core.setOutput('commits', messages)
     return
 }
