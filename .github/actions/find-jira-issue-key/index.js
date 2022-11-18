@@ -6,7 +6,7 @@ async function main() {
     console.log('Finding Jira issue key')
     
     const commits = JSON.parse(core.getInput('commits'));
-    const commitsStr = commits.map(commit => commit.message).join(" ").replace('\n', '');
+    const commitsStr = commits.join(" ").replace('\n', '');
 
     const issueKey = findIssueKey(commitsStr)
     core.setOutput('issue', issueKey)

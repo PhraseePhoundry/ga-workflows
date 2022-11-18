@@ -97,4 +97,3 @@ jobs:
         uses: PhraseePhoundry/ga-record-pr-details/record-pr-details@main
         with:
           newTag: ${{ needs.bump-service-version.outputs.newTag }}
-          commits: ${{ needs.bump-service-version.outputs.commits }}
