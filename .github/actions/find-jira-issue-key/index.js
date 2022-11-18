@@ -10,8 +10,9 @@ async function main() {
 
     const issueKeys = findIssueKey(commitsStr)
 
+    let uniqueKeys
     if(issueKeys) {
-        const uniqueKeys = Array.from(new Set(issueKeys))
+        uniqueKeys = Array.from(new Set(issueKeys))
         console.log(`Detected issue key(s): ${uniqueKeys}`)
     }
     core.setOutput('issue', JSON.stringify(uniqueKeys))
