@@ -3,7 +3,9 @@ const core = require('@actions/core')
 
 async function main() {
 
+    console.log('--------------------------------------------------')
     const event = process.env.GITHUB_EVENT_PATH ? require(process.env.GITHUB_EVENT_PATH) : {};
+    console.log(JSON.stringify(event))
     let messages
 
     if (event.pull_request) {
