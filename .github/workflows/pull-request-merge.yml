@@ -43,8 +43,9 @@ jobs:
       - name: Bump version
         id: version-bump
         uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@pr-test
-        env:
-          CURRENT_TAG: ${{ steps.get-latest-tag.outputs.tag }}
+        with:
+          commits: ${{ steps.get-commits.outputs.commits }}
+          newTag: ${{ steps.get-latest-tag.outputs.tag }}
 
       - name: Output Step
         env:

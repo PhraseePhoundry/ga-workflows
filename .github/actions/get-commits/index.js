@@ -32,7 +32,7 @@ async function main() {
         process.exit(1);
     }
 
-    core.setOutput('commits', messages)
+    core.setOutput('commits', JSON.stringify(messages))
     return
 }
 
