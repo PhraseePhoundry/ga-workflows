@@ -16,6 +16,7 @@ jobs:
     name: Bump service version
     runs-on: ubuntu-latest
     outputs:
+      commits: ${{ steps.get-commits.outputs.commits }}
       newTag: ${{ steps.version-bump.outputs.newTag }}
 
     steps:
@@ -32,12 +33,17 @@ jobs:
         uses: PhraseePhoundry/ga-get-current-tag@main
         with:
           fallback: '1.0.0'
+      
+      - name: Get commit messages
+        id: get-commits
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@HS-1253-record-pr-details
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version
         id: version-bump
-        uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@pr-test
+        uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@pr-test
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CURRENT_TAG: ${{ steps.get-latest-tag.outputs.tag }}
 
       - name: Output Step
@@ -65,9 +71,9 @@ jobs:
 
       - name: Find issue key
         id: find-issue-key
-        uses: PhraseePhoundry/ga-jira-find-issue-key@main
+        uses: PhraseePhoundry/ga-workflows/.github/actions/find-jira-issue-key@HS-1253-record-pr-details
         with:
-          from: commits
+          commits: ${{ needs.bump-service-version.outputs.commits }}
       
       - name: Update Jira issue
         uses: PhraseePhoundry/ga-jira-update-issue@main
@@ -90,3 +96,4 @@ jobs:
         uses: PhraseePhoundry/ga-record-pr-details/record-pr-details@main
         with:
           newTag: ${{ needs.bump-service-version.outputs.newTag }}
+          commits: ${{ needs.bump-service-version.outputs.commits }}

@@ -15,6 +15,10 @@
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.0.0",
+    "@actions/github": "^2.1.1"
+  },
   "bugs": {
     "url": "https://github.com/PhraseePhoundry/ga-workflows/issues"
   },

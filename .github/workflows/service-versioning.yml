@@ -24,11 +24,16 @@ jobs:
         with:
           fallback: '1.0.0'
 
-      - name: Bump version
-        id: version-bump
-        uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@main
+      - name: Get commit messages
+        id: get-commits
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@HS-1253-record-pr-details
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump version
+        id: version-bump
+        uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@pr-test
+        env:
           CURRENT_TAG: ${{ steps.get-latest-tag.outputs.tag }}
 
       - name: Output Step
