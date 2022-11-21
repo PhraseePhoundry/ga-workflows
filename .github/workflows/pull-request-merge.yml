@@ -10,6 +10,12 @@ on:
         required: true
       JiraApiToken:
         required: true
+      MongoDbName:
+        required: true
+      MongoDbCollection:
+        required: true
+      MongoDbUrl:
+        required: true
 
 jobs:
   bump-service-version:
