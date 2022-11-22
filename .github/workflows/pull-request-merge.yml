@@ -83,7 +83,7 @@ jobs:
           commits: ${{ needs.bump-service-version.outputs.commits }}
       
       - name: Update Jira issue
-        uses: PhraseePhoundry/ga-jira-update-issue@main
+        uses: PhraseePhoundry/ga-jira-update-issue@feature/HS-1253-record-pr-details
         with:
           issue: ${{ steps.find-issue-key.outputs.issue }}
           newTag: ${{ needs.bump-service-version.outputs.newTag }}
