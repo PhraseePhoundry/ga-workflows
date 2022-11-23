@@ -20,19 +20,19 @@ jobs:
       
       - name: Get latest git tag
         id: get-latest-tag
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@HS-1253-record-pr-details
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@main
         with:
           fallback: '1.0.0'
 
       - name: Get commit messages
         id: get-commits
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@HS-1253-record-pr-details
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version
         id: version-bump
-        uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@pr-test
+        uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@main
         with:
           commits: ${{ steps.get-commits.outputs.commits }}
           currentTag: ${{ steps.get-latest-tag.outputs.tag }}

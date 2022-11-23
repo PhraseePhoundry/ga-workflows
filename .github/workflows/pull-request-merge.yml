@@ -36,19 +36,19 @@ jobs:
       
       - name: Get latest git tag
         id: get-latest-tag
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@HS-1253-record-pr-details
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@main
         with:
           fallback: '1.0.0'
       
       - name: Get commit messages
         id: get-commits
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@HS-1253-record-pr-details
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version
         id: version-bump
-        uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@pr-test
+        uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@main
         with:
           commits: ${{ steps.get-commits.outputs.commits }}
           currentTag: ${{ steps.get-latest-tag.outputs.tag }}
@@ -78,12 +78,12 @@ jobs:
 
       - name: Find issue key
         id: find-issue-key
-        uses: PhraseePhoundry/ga-workflows/.github/actions/find-jira-issue-key@HS-1253-record-pr-details
+        uses: PhraseePhoundry/ga-workflows/.github/actions/find-jira-issue-key@main
         with:
           commits: ${{ needs.bump-service-version.outputs.commits }}
       
       - name: Update Jira issue
-        uses: PhraseePhoundry/ga-jira-update-issue@feature/HS-1253-record-pr-details
+        uses: PhraseePhoundry/ga-jira-update-issue@main
         with:
           issue: ${{ steps.find-issue-key.outputs.issue }}
           newTag: ${{ needs.bump-service-version.outputs.newTag }}
