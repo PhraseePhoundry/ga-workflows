@@ -22,6 +22,10 @@ async function main() {
             event: 'pull_request',
             status: 'in_progress',
         })
+        console.log('-------------------------------')
+        console.log(queuedWorkflowsList)
+        console.log('-------------------------------')
+        console.log(inProgressWorkflowsList)
         const runningWorkflows = (queuedWorkflowsList.data).concat(inProgressWorkflowsList.data)
 
         console.log('-------------------------------')
