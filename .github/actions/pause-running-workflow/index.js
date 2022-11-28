@@ -37,11 +37,12 @@ async function main() {
     const event = process.env.GITHUB_EVENT_PATH ? require(process.env.GITHUB_EVENT_PATH) : {};
 
     let runningWorkflows = await fetchAndConcatenateWorkflowRuns(event);
-    console.log('****************')
-    console.log(runningWorkflows)
     let sleepCounter = 0;
 
     while (runningWorkflows.length > 0) {
+        console.log('****************')
+        console.log(`runningWorkflows.length: ${runningWorkflows.length}`)
+        
         console.log('Found workflow runs in progress - pausing...')
         await sleep(10)
         sleepCounter += 1
