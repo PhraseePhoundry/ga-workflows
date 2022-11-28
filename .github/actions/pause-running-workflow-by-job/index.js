@@ -34,10 +34,11 @@ async function fetchAndConcatenateWorkflowRuns(event) {
 }
 
 async function getPauseWorkflowStep(event, workflowId) {
-    let jobsList;
+    console.log('---- get pause workflow step ----')
+    let jobsForWorkflow;
 
     try {
-        jobsList = await octokit.rest.actions.listJobsForWorkflowRun({
+        jobsForWorkflow = await octokit.rest.actions.listJobsForWorkflowRun({
             owner: event.repository.owner.login,
             repo: event.repository.name,
             run_id: workflowId
@@ -47,7 +48,12 @@ async function getPauseWorkflowStep(event, workflowId) {
         process.exit(1);
     }
 
-    const serviceVersionJob = jobsList.data.jobs.filter((job) => job.name === 'Bump service version')
+    console.log('---- jobs for workflow ----')
+    console.log(jobsForWorkflow)
+    const serviceVersionJob = jobsForWorkflow.data.jobs.filter((job) => job.name === 'Bump service version')
+    
+    console.log('---- service version job ----')
+    console.log(serviceVersionJob)
 
     if (serviceVersionJob.length === 0) {
         return {}
