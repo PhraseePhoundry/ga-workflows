@@ -8,12 +8,20 @@ async function main() {
     const octokit = new github.GitHub(process.env.GITHUB_TOKEN)
 
     try {
-        const runningWorkflowsList = await octokit.actions.listRepoWorkflowRuns({
+        const queuedWorkflowsList = await octokit.actions.listRepoWorkflowRuns({
             owner: event.repository.owner.login,
             repo: event.repository.name,
             event: 'pull_request',
+            status: 'queued',
         })
-        const runningWorkflows = runningWorkflowsList.data
+        
+        const inProgressWorkflowsList = await octokit.actions.listRepoWorkflowRuns({
+            owner: event.repository.owner.login,
+            repo: event.repository.name,
+            event: 'pull_request',
+            status: 'in_progress',
+        })
+        const runningWorkflows = (queuedWorkflowsList.data).concat(inProgressWorkflowsList.data)
 
         console.log('-------------------------------')
         console.log(runningWorkflows)
