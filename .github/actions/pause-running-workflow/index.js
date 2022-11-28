@@ -43,10 +43,7 @@ async function main() {
     let sleepCounter = 0;
 
     while (runningWorkflows.length > 0) {
-        console.log('****************')
-        console.log(`runningWorkflows.length: ${runningWorkflows.length}`)
-
-        console.log('Found workflow runs in progress - pausing...')
+        console.log(`Found ${runningWorkflows.length} workflow run(s) in progress - pausing...`)
         await sleep(10)
         sleepCounter += 1
 

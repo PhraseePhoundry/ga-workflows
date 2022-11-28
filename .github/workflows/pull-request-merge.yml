@@ -31,6 +31,11 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
+      - name: Pause workflow
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-running-workflow-by-job@pause-workflow-test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run git fetch
         run: git fetch --prune --unshallow
       
