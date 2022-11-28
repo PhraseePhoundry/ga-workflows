@@ -1,21 +1,22 @@
-const github = require('@actions/github')
-const core = require('@actions/core')
+const { Octokit } = require("@octokit/rest");
 
 async function main() {
 
     const event = process.env.GITHUB_EVENT_PATH ? require(process.env.GITHUB_EVENT_PATH) : {};
 
-    const octokit = new github.GitHub(process.env.GITHUB_TOKEN)
+    const octokit = new Octokit({
+        auth: process.env.GITHUB_TOKEN
+    });
 
     try {
-        const queuedWorkflowsList = await octokit.actions.listRepoWorkflowRuns({
+        const queuedWorkflowsList = await octokit.rest.actions.listWorkflowRunsForRepo({
             owner: event.repository.owner.login,
             repo: event.repository.name,
             event: 'pull_request',
             status: 'queued',
         })
         
-        const inProgressWorkflowsList = await octokit.actions.listRepoWorkflowRuns({
+        const inProgressWorkflowsList = await octokit.rest.actions.listRepoWorkflowRunsForRepo({
             owner: event.repository.owner.login,
             repo: event.repository.name,
             event: 'pull_request',
