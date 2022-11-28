@@ -49,9 +49,9 @@ async function getPauseWorkflowStep(event, workflowId) {
     }
 
     console.log('---- jobs for workflow ----')
-    console.log(jobsForWorkflow)
+    console.log(jobsForWorkflow.data.jobs)
     const serviceVersionJob = jobsForWorkflow.data.jobs.filter((job) => job.name === 'Bump service version')
-    
+
     console.log('---- service version job ----')
     console.log(serviceVersionJob)
 
