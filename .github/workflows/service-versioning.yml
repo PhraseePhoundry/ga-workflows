@@ -34,8 +34,6 @@ jobs:
         uses: PhraseePhoundry/ga-workflows/.github/actions/pause-running-workflow@pause-workflow-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          workflowFileName: 'pull-request-merge.yml'
 
       - name: Bump version
         id: version-bump
