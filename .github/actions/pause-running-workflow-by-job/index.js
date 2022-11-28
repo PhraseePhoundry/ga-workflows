@@ -69,7 +69,7 @@ async function fetchWorkflowsAndCompletedPauseWorkflowSteps(event) {
         getPauseWorkflowStepPromises.push(getPauseWorkflowStep(event, workflow.id))
     })
 
-    const pauseWorkflowSteps = Promise.all(getPauseWorkflowStepPromises)
+    const pauseWorkflowSteps = await Promise.all(getPauseWorkflowStepPromises)
 
     console.log('---- Steps ----')
     console.log(pauseWorkflowSteps)
