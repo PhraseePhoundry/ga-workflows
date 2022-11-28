@@ -1,5 +1,5 @@
 name: Pause workflow
-description: "Pauses" a workflow until a different workflow has completed
+description: Pauses a workflow until a different workflow has completed
 inputs:
   workflowFileName:
     description: Name of the workflow to watch
