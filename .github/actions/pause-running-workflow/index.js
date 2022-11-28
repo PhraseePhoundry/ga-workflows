@@ -23,10 +23,10 @@ async function main() {
             status: 'in_progress',
         })
         console.log('-------------------------------')
-        console.log(queuedWorkflowsList)
+        console.log(queuedWorkflowsList.data.workflow_runs)
         console.log('-------------------------------')
-        console.log(inProgressWorkflowsList)
-        const runningWorkflows = (queuedWorkflowsList.data).concat(inProgressWorkflowsList.data)
+        console.log(inProgressWorkflowsList.data.workflow_runs)
+        const runningWorkflows = (queuedWorkflowsList.data.workflow_runs).concat(inProgressWorkflowsList.data.workflow_runs)
 
         console.log('-------------------------------')
         console.log(runningWorkflows)
