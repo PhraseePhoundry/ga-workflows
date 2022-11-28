@@ -16,7 +16,7 @@ async function main() {
             status: 'queued',
         })
         
-        const inProgressWorkflowsList = await octokit.rest.actions.listRepoWorkflowRunsForRepo({
+        const inProgressWorkflowsList = await octokit.rest.actions.listWorkflowRunsForRepo({
             owner: event.repository.owner.login,
             repo: event.repository.name,
             event: 'pull_request',
