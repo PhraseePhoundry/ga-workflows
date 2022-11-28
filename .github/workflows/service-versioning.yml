@@ -15,17 +15,17 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
+      - name: Pause workflow
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-running-workflow@pause-workflow-test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run git fetch
         run: git fetch --prune --unshallow
 
       - name: Get commit messages
         id: get-commits
         uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Pause workflow
-        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-running-workflow@pause-workflow-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
