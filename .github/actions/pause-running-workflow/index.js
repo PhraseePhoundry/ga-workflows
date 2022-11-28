@@ -8,10 +8,10 @@ async function main() {
     const octokit = new github.GitHub(process.env.GITHUB_TOKEN)
 
     try {
-        const runningWorkflowsList = await octokit.actions.listWorkflowRuns({
+        const runningWorkflowsList = await octokit.actions.listWorkflowRunsForRepo({
             owner: event.repository.owner.login,
             repo: event.repository.name,
-            workflow_id: core.getInput('workflowFileName'),
+            event: 'pull_request',
         })
         const runningWorkflows = runningWorkflowsList.data
 
