@@ -30,7 +30,10 @@ async function fetchAndConcatenateWorkflowRuns(event) {
         process.exit(1);
     }
 
-    return (queuedWorkflowsList.data.workflow_runs).concat(inProgressWorkflowsList.data.workflow_runs)
+    const allWorkflowRuns = (queuedWorkflowsList.data.workflow_runs).concat(inProgressWorkflowsList.data.workflow_runs)
+    const filteredWorkflowRuns = allWorkflowRuns.filter((workflow) => workflow.name === 'Automatic service versioning, saving PR details, and Jira update')
+
+    return filteredWorkflowRuns
 }
 
 async function main() {
@@ -42,7 +45,7 @@ async function main() {
     while (runningWorkflows.length > 0) {
         console.log('****************')
         console.log(`runningWorkflows.length: ${runningWorkflows.length}`)
-        
+
         console.log('Found workflow runs in progress - pausing...')
         await sleep(10)
         sleepCounter += 1
