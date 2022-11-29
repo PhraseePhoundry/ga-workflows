@@ -12,6 +12,8 @@ const getRunningWorkflows = async ({params, workflowName}) => {
     console.log('---- get running workflows ----')
 
     console.log('---- params ----')
+    console.log(params)
+    console.log({params})
     console.log({...params, status: 'queued'})
     let queuedWorkflowsList;
     let inProgressWorkflowsList;
