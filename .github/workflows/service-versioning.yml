@@ -22,7 +22,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Pause workflow
-        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-running-workflow@pause-workflow-test
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-develop-branch-workflow@pause-workflow-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

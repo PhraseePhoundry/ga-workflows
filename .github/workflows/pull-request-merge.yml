@@ -32,7 +32,7 @@ jobs:
           ref: ${{ github.ref }}
 
       - name: Pause workflow
-        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-running-workflow-by-job@pause-workflow-test
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-pr-workflow@pause-workflow-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
