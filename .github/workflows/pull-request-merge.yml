@@ -46,7 +46,7 @@ jobs:
       
       - name: Get commit messages
         id: get-commits
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@pause-workflow-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
