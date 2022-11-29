@@ -9,12 +9,6 @@ const sleep = (seconds) => {
 }
 
 const getRunningWorkflows = async (params, workflowName) => {
-    console.log('---- get running workflows ----')
-
-    console.log('---- params ----')
-    console.log(params)
-    console.log({params})
-    console.log({...params, status: 'queued'})
     let queuedWorkflowsList;
     let inProgressWorkflowsList;
     try {
@@ -24,16 +18,10 @@ const getRunningWorkflows = async (params, workflowName) => {
         console.error(`Error retrieving workflows information: ${String(err)}`)
         process.exit(1);
     }
-    console.log('---- queuedWorkflowsList ----')
-    console.log(queuedWorkflowsList)
-    console.log('---- inProgressWorkflowsList ----')
-    console.log(inProgressWorkflowsList)
 
     const allWorkflowRuns = (queuedWorkflowsList.data.workflow_runs).concat(inProgressWorkflowsList.data.workflow_runs)
     const filteredWorkflowRuns = allWorkflowRuns.filter((workflow) => workflow.name === workflowName)
 
-    console.log('---- filteredWorkflowRuns ----')
-    console.log(filteredWorkflowRuns)
     return filteredWorkflowRuns
 }
 

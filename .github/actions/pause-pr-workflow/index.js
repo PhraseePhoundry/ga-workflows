@@ -32,13 +32,11 @@ async function getPauseWorkflowStep(event, workflowId) {
 async function getCompletedPauseWorkflowSteps(event, runningWorkflows) {
 
     const getPauseWorkflowStepPromises = []
-
     runningWorkflows.forEach((workflow) => {
         getPauseWorkflowStepPromises.push(getPauseWorkflowStep(event, workflow.id))
     })
     
     const pauseWorkflowSteps = await Promise.all(getPauseWorkflowStepPromises)
-
     const completedPauseWorkflowSteps = pauseWorkflowSteps.filter((step) => step.status === 'completed')
 
     return completedPauseWorkflowSteps
