@@ -19,7 +19,6 @@ on:
 jobs:
   bump-service-version:
     name: Bump service version
-    if: github.event.pull_request.merged == 'true'
     runs-on: ubuntu-latest
     outputs:
       commits: ${{ steps.get-commits.outputs.commits }}

@@ -7,6 +7,8 @@ async function main() {
     let messages
 
     if (event.pull_request) {
+        console.log('---- pull request ----')
+        console.log(event.pull_request)
         const octokit = new github.GitHub(process.env.GITHUB_TOKEN)
 
         try {
