@@ -1,5 +1,4 @@
-
-name: Bump version, save PR details, and Jira update
+name: Automatic service versioning, saving PR details, and Jira update
 
 on:
   workflow_call:
