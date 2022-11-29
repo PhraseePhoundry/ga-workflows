@@ -30,7 +30,10 @@ async function fetchAndConcatenateWorkflowRuns(event) {
         process.exit(1);
     }
 
-    return (queuedWorkflowsList.data.workflow_runs).concat(inProgressWorkflowsList.data.workflow_runs)
+
+    const allWorkflowRuns = (queuedWorkflowsList.data.workflow_runs).concat(inProgressWorkflowsList.data.workflow_runs)
+    const filteredWorkflowRuns = allWorkflowRuns.filter((workflow) => workflow.name !== 'Automatic service versioning, saving PR details, and Jira update')
+    return filteredWorkflowRuns
 }
 
 async function getPauseWorkflowStep(event, workflowId) {
