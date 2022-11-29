@@ -1,8 +1,8 @@
-export function sleep(seconds) {
+const sleep = (seconds) => {
     return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
 
-export async function getRunningWorkflows({params, workflowName}) {
+const getRunningWorkflows = async ({params, workflowName}) => {
     let queuedWorkflowsList;
     let inProgressWorkflowsList;
     try {
@@ -18,3 +18,6 @@ export async function getRunningWorkflows({params, workflowName}) {
 
     return filteredWorkflowRuns
 }
+
+exports.sleep = sleep;
+exports.getRunningWorkflows = getRunningWorkflows;
