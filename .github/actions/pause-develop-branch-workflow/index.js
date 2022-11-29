@@ -1,4 +1,4 @@
-const { sleep, getRunningWorkflows } = require('../pause-workflow-utils')
+const { sleep, getRunningWorkflows } = require('../pause-workflow-utils/utils');
 
 async function main() {
     const event = process.env.GITHUB_EVENT_PATH ? require(process.env.GITHUB_EVENT_PATH) : {};

@@ -1,5 +1,5 @@
 const { Octokit } = require("@octokit/rest");
-const { sleep, getRunningWorkflows } = require('../pause-workflow-utils')
+const { sleep, getRunningWorkflows } = require('../pause-workflow-utils/utils');
 
 const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
