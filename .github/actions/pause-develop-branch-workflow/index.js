@@ -25,7 +25,7 @@ async function main() {
             process.exit(1)
         }
 
-        runningWorkflows = await getRunningWorkflows(params);
+        runningWorkflows = await getRunningWorkflows(params, workflowName);
     }
 
     return
