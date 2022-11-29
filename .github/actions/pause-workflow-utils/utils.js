@@ -8,7 +8,7 @@ const sleep = (seconds) => {
     return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
 
-const getRunningWorkflows = async ({params, workflowName}) => {
+const getRunningWorkflows = async (params, workflowName) => {
     console.log('---- get running workflows ----')
 
     console.log('---- params ----')
