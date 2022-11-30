@@ -16,12 +16,12 @@ jobs:
 
       - name: Get commit messages
         id: get-commits
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@pause-workflow-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Pause workflow
-        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-develop-branch-workflow@main
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-develop-branch-workflow@pause-workflow-test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
