@@ -32,7 +32,7 @@ jobs:
           ref: ${{ github.ref }}
 
       - name: Pause workflow
-        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-pr-workflow@pause-workflow-test
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-pr-workflow@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -47,7 +47,7 @@ jobs:
       
       - name: Get commit messages
         id: get-commits
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@pause-workflow-test
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
