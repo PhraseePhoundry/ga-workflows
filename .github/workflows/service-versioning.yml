@@ -1,22 +1,12 @@
-
-name: Automatic service versioning and Jira update
+name: Automatic service version bump
 
 on:
   workflow_call:
-    secrets:
-      JiraEmail:
-        required: true
-      JiraUrl:
-        required: true
-      JiraApiToken:
-        required: true
 
 jobs:
   bump-service-version:
     name: Bump service version
     runs-on: ubuntu-latest
-    outputs:
-      newTag: ${{ steps.version-bump.outputs.newTag }}
 
     steps:
       - name: Checkout source code
@@ -24,51 +14,34 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
+      - name: Get commit messages
+        id: get-commits
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Pause workflow
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-develop-branch-workflow@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run git fetch
         run: git fetch --prune --unshallow
-      
+
       - name: Get latest git tag
         id: get-latest-tag
-        uses: PhraseePhoundry/ga-get-current-tag@main
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@main
+        with:
+          fallback: '1.0.0'
 
       - name: Bump version
         id: version-bump
-        uses: PhraseePhoundry/gh-action-bump-version/.github/actions/bump-version@remove-package-json-dependency
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CURRENT_TAG: ${{ steps.get-latest-tag.outputs.tag }}
+        uses: PhraseePhoundry/ga-bump-version/.github/actions/bump-version@main
+        with:
+          commits: ${{ steps.get-commits.outputs.commits }}
+          currentTag: ${{ steps.get-latest-tag.outputs.tag }}
 
       - name: Output Step
         env:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
         run: echo "new tag $NEW_TAG"
-
-  update-jira-ticket:
-    name: Update Jira ticket
-    runs-on: ubuntu-latest
-    needs: bump-service-version
-
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
-
-      - name: Jira login
-        uses: PhraseePhoundry/ga-jira-login@main
-        env:
-          JIRA_BASE_URL: ${{ secrets.JiraUrl }}
-          JIRA_USER_EMAIL: ${{ secrets.JiraEmail }}
-          JIRA_API_TOKEN: ${{ secrets.JiraApiToken }}
-
-      - name: Find issue key
-        id: find-issue-key
-        uses: PhraseePhoundry/ga-jira-find-issue-key@main
-        with:
-          from: commits
-      
-      - name: Update Jira issue
-        uses: PhraseePhoundry/ga-jira-update-issue@main
-        with:
-          issue: ${{ steps.find-issue-key.outputs.issue }}
-          newTag: ${{ needs.bump-service-version.outputs.newTag }}

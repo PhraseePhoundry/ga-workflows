@@ -1,0 +1,14 @@
+name: Find Jira issue key
+description: Find an issue key from commits
+inputs:
+  commits: 
+    description: A list of commits
+    required: true
+
+outputs:
+  issue:
+    description: Key of the found issue
+
+runs:
+  using: 'node12'
+  main: './index.js'

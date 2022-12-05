@@ -1,4 +1,4 @@
-name: Automatic service versioning and Jira update
+name: Automatic service version bump
 
 on:
   push:

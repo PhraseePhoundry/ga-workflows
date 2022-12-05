@@ -1,0 +1,9 @@
+name: Get commits
+description: Get list of commit messages from GitHub event
+outputs:
+  commits:
+    description: Commit messages of the GitHub event
+
+runs:
+  using: 'node12'
+  main: './index.js'

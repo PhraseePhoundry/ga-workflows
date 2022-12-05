@@ -1,0 +1,27 @@
+{
+  "name": "ga-workflows",
+  "version": "1.0.7",
+  "description": "This is a repository containing shared/common GitHub Actions workflows for the Phrasee Phoundry organisation.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhraseePhoundry/ga-workflows.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.0.0",
+    "@actions/github": "^2.1.1",
+    "@octokit/rest": "^19.0.5"
+  },
+  "bugs": {
+    "url": "https://github.com/PhraseePhoundry/ga-workflows/issues"
+  },
+  "homepage": "https://github.com/PhraseePhoundry/ga-workflows#readme"
+}

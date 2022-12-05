@@ -1,0 +1,12 @@
+name: Get Latest Tag
+description: Gets the latest tag from git, outputs that for use in other actions
+inputs:
+  fallback:
+    description: Fallback tag to use when no previous tag can be found
+    required: false
+outputs:
+  tag:
+    description: Latest tag
+runs:
+  using: node12
+  main: ./index.js
