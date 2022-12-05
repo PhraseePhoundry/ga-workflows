@@ -1,0 +1,19 @@
+name: Automatic service versioning, saving PR details, and Jira update
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
+
+jobs:
+  call-service-version-bump-workflow:
+    uses: PhraseePhoundry/ga-workflows/.github/workflows/pull-request-merge.yml@pause-workflow-test
+    secrets:
+      JiraUrl: ${{ secrets.JIRA_BASE_URL }}
+      JiraApiToken: ${{ secrets.JIRA_API_TOKEN }}
+      JiraEmail: ${{ secrets.JIRA_USER_EMAIL }}
+      MongoDbName: ${{ secrets.MONGO_DB_NAME }}
+      MongoDbUrl: ${{ secrets.MONGO_DB_URL }}
+      MongoDbCollection: ${{ secrets.MONGO_DB_COLLECTION }}

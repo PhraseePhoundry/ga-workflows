@@ -1,4 +1,3 @@
-
 name: Automatic service version bump
 
 on:
@@ -15,20 +14,25 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: Run git fetch
-        run: git fetch --prune --unshallow
-      
-      - name: Get latest git tag
-        id: get-latest-tag
-        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@main
-        with:
-          fallback: '1.0.0'
-
       - name: Get commit messages
         id: get-commits
         uses: PhraseePhoundry/ga-workflows/.github/actions/get-commits@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Pause workflow
+        uses: PhraseePhoundry/ga-workflows/.github/actions/pause-develop-branch-workflow@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run git fetch
+        run: git fetch --prune --unshallow
+
+      - name: Get latest git tag
+        id: get-latest-tag
+        uses: PhraseePhoundry/ga-workflows/.github/actions/get-latest-tag@main
+        with:
+          fallback: '1.0.0'
 
       - name: Bump version
         id: version-bump

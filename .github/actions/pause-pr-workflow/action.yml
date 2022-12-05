@@ -1,0 +1,5 @@
+name: Pause workflow by job
+description: Pauses a workflow until a specific job from a different workflow has completed
+runs:
+  using: node12
+  main: ./index.js
