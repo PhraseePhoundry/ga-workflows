@@ -83,7 +83,7 @@ jobs:
 
       - name: Find issue key
         id: find-issue-key
-        uses: PhraseePhoundry/ga-workflows/.github/actions/find-jira-issue-key@main
+        uses: PhraseePhoundry/ga-workflows/.github/actions/find-jira-issue-key@regex-fix
         with:
           commits: ${{ needs.bump-service-version.outputs.commits }}
       
