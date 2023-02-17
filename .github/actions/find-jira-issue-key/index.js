@@ -29,7 +29,7 @@ const findIssueKey = (searchStr) => {
       return
     }
 
-    return matches.map((match) => match.trim())
+    return matches
   }
 
 
