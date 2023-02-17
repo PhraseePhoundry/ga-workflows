@@ -19,7 +19,6 @@ async function main() {
 }
 
 const findIssueKey = (searchStr) => {
-    console.log(`Regex: ${issueIdRegEx}`)
     const matches = searchStr.match(issueIdRegEx)
 
     console.log(`Searching in string: \n ${searchStr}`)
