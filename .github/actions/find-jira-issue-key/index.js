@@ -1,6 +1,6 @@
 const core = require('@actions/core')
 
-const issueIdRegEx = /\W\[?([a-zA-Z0-9]{2}-[0-9]+)\]?\W/g
+const issueIdRegEx = /\b[a-zA-Z]{2}-\d+\b/g
 
 async function main() {
     console.log('Finding Jira issue key')
@@ -29,7 +29,7 @@ const findIssueKey = (searchStr) => {
       return
     }
 
-    return matches
+    return matches.map((match) => match.trim())
   }
 
 
